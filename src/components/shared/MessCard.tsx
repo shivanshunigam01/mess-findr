@@ -2,10 +2,17 @@ import { Phone, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Mess } from "@/data/messes";
+import { motion } from "framer-motion";
 
 export const MessCard = ({ mess }: { mess: Mess }) => {
   return (
-    <div className="rounded-lg border bg-card hover-scale overflow-hidden">
+    <motion.div
+      className="rounded-lg border bg-card hover-scale overflow-hidden"
+      initial={{ opacity: 0, y: 12 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+    >
       <Link to={`/messes/${mess.id}`}>
         <img src={mess.image} alt={`${mess.name} mess photo`} loading="lazy" className="h-44 w-full object-cover" />
       </Link>
@@ -26,6 +33,6 @@ export const MessCard = ({ mess }: { mess: Mess }) => {
           </Button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
